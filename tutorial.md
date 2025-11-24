@@ -1,10 +1,10 @@
 # Claude Code Setup
 
-<walkthrough-tutorial-duration duration="3"></walkthrough-tutorial-duration>
+<walkthrough-tutorial-duration duration="5"></walkthrough-tutorial-duration>
 
 ## Welcome
 
-This tutorial will set up **Claude Code** with pre-configured tools for our team.
+This tutorial will set up **Claude Code** as your Tameson Data Assistant.
 
 Click **Start** to begin.
 
@@ -18,7 +18,7 @@ Run the setup script in the terminal below:
 
 This will:
 - Install Claude Code
-- Configure MCP servers (BigQuery, Context7, Markitdown)
+- Configure MCP servers (BigQuery, Product Search, Context7, Markitdown)
 - Set up permissions for filesystem and tools
 
 Wait for it to complete (about 1 minute).
@@ -40,25 +40,44 @@ If not authenticated, run:
 gcloud auth login
 ```
 
-## Step 3: Start Claude Code
+## Step 3: Get Your Anthropic API Key
 
-Now start Claude Code:
+You need an Anthropic API key to use Claude Code.
+
+1. Go to [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys)
+2. Create a new API key or copy an existing one
+3. Keep it ready for the next step
+
+## Step 4: Start Claude Code
+
+Start Claude Code:
 
 ```bash
 claude
 ```
 
-That's it! Claude Code is now ready with:
-- **BigQuery** access for data analysis
-- **Context7** for library documentation
-- **Markitdown** for document conversion
+On first run, you'll be prompted to enter your API key.
+
+Paste your Anthropic API key when asked.
+
+## Step 5: Verify Setup
+
+Once Claude Code starts, try asking:
+
+```
+What datasets are available in BigQuery?
+```
+
+Claude should list the available datasets from the Tameson datalake.
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
-## Tips
+## You're Ready!
 
-- Type `/help` in Claude Code to see available commands
-- Use `claude --help` for CLI options
-- MCP servers are pre-configured and ready to use
+Claude Code is now configured with:
+- **BigQuery** - Query the Tameson datalake
+- **Product Search** - Find products in the catalog
+- **Context7** - Library documentation
+- **Markitdown** - Document conversion
 
-**Happy coding!**
+**Happy researching!**

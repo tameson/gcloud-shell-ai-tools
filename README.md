@@ -2,7 +2,7 @@
 
 Claude Code pre-configured to query the Tameson datalake.
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_tutorial=tutorial.md&show=terminal&cloudshell_workspace=.)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_tutorial=tutorial.md&show=ide&cloudshell_workspace=.)
 
 ## Quick Start
 
