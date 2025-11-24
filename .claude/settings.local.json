@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "mcp__bigquery__*",
+      "mcp__context7__*",
+      "mcp__markitdown__*",
+      "mcp__product_search__*",
+      "WebFetch(*)",
+      "WebSearch(*)"
+    ],
+    "deny": [
+      "bq *"
+    ]
+  }
+}

@@ -10,6 +10,8 @@ Click **Start** to begin.
 
 ## Step 1: Run Setup
 
+First open a terminal ```shift+ctrl+c```
+
 Run the setup script in the terminal below:
 
 ```bash
@@ -25,30 +27,8 @@ Wait for it to complete (about 1 minute).
 
 <walkthrough-footnote>If you see permission errors, make sure you're logged into the correct Google account.</walkthrough-footnote>
 
-## Step 2: Verify Google Cloud Auth
 
-Make sure you're authenticated with Google Cloud:
-
-```bash
-gcloud auth list
-```
-
-You should see your account with an asterisk (*) next to it.
-
-If not authenticated, run:
-```bash
-gcloud auth login
-```
-
-## Step 3: Get Your Anthropic API Key
-
-You need an Anthropic API key to use Claude Code.
-
-1. Go to [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys)
-2. Create a new API key or copy an existing one
-3. Keep it ready for the next step
-
-## Step 4: Start Claude Code
+## Step 2: Start Claude Code
 
 Start Claude Code:
 
@@ -56,19 +36,19 @@ Start Claude Code:
 claude
 ```
 
-On first run, you'll be prompted to enter your API key.
+On first run, you'll be prompted to login via your account or API key
 
-Paste your Anthropic API key when asked.
+Select the API key based cost and login via your google account on the link provided, copy the code you receive.
 
 ## Step 5: Verify Setup
 
 Once Claude Code starts, try asking:
 
 ```
-What datasets are available in BigQuery?
+Is the currency rate USD/EUR available in BigQuery for last week, how much did it change?
 ```
 
-Claude should list the available datasets from the Tameson datalake.
+Claude should try to find it in bigquery.
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
@@ -76,8 +56,8 @@ Claude should list the available datasets from the Tameson datalake.
 
 Claude Code is now configured with:
 - **BigQuery** - Query the Tameson datalake
-- **Product Search** - Find products in the catalog
-- **Context7** - Library documentation
-- **Markitdown** - Document conversion
+- **Product Search** - Find products and categories in the tameson catalog
+- **Context7** - IT docs and Library documentation
+- **Markitdown** - Document and pdf reading
 
 **Happy researching!**
