@@ -38,9 +38,11 @@ claude
 
 On first run, you'll be prompted to login via your account or API key
 
-Select the API key based cost and login via your google account on the link provided, copy the code you receive.
+Select the option ```Anthropic Console account · API usage billing``` and login via your google account on the link provided, copy the code you receive.
 
-## Step 5: Verify Setup
+Accept all other default options.
+
+## Step 3: Verify Setup
 
 Once Claude Code starts, try asking:
 
