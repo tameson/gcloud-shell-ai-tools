@@ -1,0 +1,56 @@
+# Cloud Build configuration for Cloud Shell custom image
+#
+# Prerequisites:
+#   1. Create Artifact Registry repository:
+#      gcloud artifacts repositories create cloudshell-images \
+#        --repository-format=docker \
+#        --location=europe-west4 \
+#        --description="Cloud Shell custom images"
+#
+#   2. Make repository public (for Cloud Shell access):
+#      gcloud artifacts repositories add-iam-policy-binding cloudshell-images \
+#        --location=europe-west4 \
+#        --member=allUsers \
+#        --role=roles/artifactregistry.reader
+#
+# Usage:
+#   gcloud builds submit --config=cloudbuild.yaml .
+#
+# Or trigger on push (set up a Cloud Build trigger in Console)
+
+substitutions:
+  _REGION: europe-west4
+  _REPOSITORY: cloudshell-images
+  _IMAGE_NAME: cloudshell-ai-team
+  _TAG: latest  # Override with: --substitutions=_TAG=v1.0.0
+
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}'
+      - '.'
+
+  # Push the image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}'
+
+# Images to store in Artifact Registry
+images:
+  - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}'
+
+# Build options
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'  # Faster builds
+
+# Timeout for the build (30 minutes)
+timeout: '1800s'
+
+tags:
+  - 'cloudshell'
+  - 'ai-tools'

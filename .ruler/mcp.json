@@ -1,0 +1,24 @@
+{
+    "mcpServers": {
+      "bigquery": {
+        "command": "uvx",
+        "args": ["bigquery-mcp", "--project", "bi-project-392012", "--location", "europe-west4"]
+      },
+      "context7": {
+        "type": "http",
+        "url": "https://mcp.context7.com/mcp"
+      },
+      "chrome-devtools": {
+        "command": "npx",
+        "args": ["-y", "chrome-devtools-mcp@latest"]
+      },
+      "product_search": {
+        "transport": "streamable_http",
+        "url": "https://product-search-mcp-tameson.replit.app/mcp/",
+        "headers": {
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJwcm9kdWN0LXNlYXJjaC1tY3AiLCJhdWQiOiJwcm9kdWN0LXNlYXJjaC1tY3AiLCJleHAiOjE3OTE0NTI3OTN9.1-p_q2F5sm5GxKd3oYONWih_MOiNdK60XLunxv0yB78"
+        }
+      }
+    }
+  }
+  
