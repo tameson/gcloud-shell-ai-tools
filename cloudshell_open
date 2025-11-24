@@ -1,0 +1,15 @@
+
+============================================
+  Cloud Shell AI Team Environment
+============================================
+
+Run this command to complete setup:
+
+  ./setup.sh
+
+This will install:
+  - Claude Code (Anthropic)
+  - Codex (OpenAI)
+  - Gemini CLI (Google)
+  - MCP servers for all agents
+
