@@ -1,0 +1,25 @@
+
+================================================================================
+  Cloud Shell AI Tools - Setup
+================================================================================
+
+Run this command to complete setup:
+
+    ./setup.sh
+
+This will install:
+  - Claude Code (Anthropic)
+  - Codex (OpenAI)
+  - MCP servers for BigQuery, Context7, and more
+
+After setup completes, run:
+
+    source ~/.bashrc
+
+Then you can use:
+  - claude    (Anthropic Claude Code)
+  - codex     (OpenAI Codex)
+
+API keys are automatically loaded from Secret Manager.
+================================================================================
+

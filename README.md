@@ -1,14 +1,14 @@
-# Cloud Shell AI Team Environment
+# Cloud Shell AI Tools
 
-Pre-configured AI coding assistants (Claude Code, Codex, Gemini CLI) with shared MCP servers for Google Cloud Shell.
+Pre-configured AI coding assistants (Claude Code, Codex) with shared MCP servers for Google Cloud Shell.
 
 ## Quick Start
 
 ### One-Click Setup
 
-Click the button below to open Cloud Shell and clone this repo:
+Click the button below to open Cloud Shell:
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_tutorial=tutorial.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_print=QUICKSTART.txt)
 
 Then run:
 ```bash
@@ -16,13 +16,13 @@ Then run:
 source ~/.bashrc
 ```
 
-That's it! API keys are automatically fetched from Secret Manager.
+API keys are automatically loaded from Secret Manager.
 
 ### Manual Setup
 
 ```bash
 git clone https://github.com/tameson/gcloud-shell-ai-tools.git
-cd gcloud-shell-team
+cd gcloud-shell-ai-tools
 ./setup.sh
 source ~/.bashrc
 ```
@@ -33,7 +33,6 @@ source ~/.bashrc
 |---------|-------------|
 | `claude` | Anthropic Claude Code |
 | `codex` | OpenAI Codex |
-| `gemini` | Google Gemini CLI (uses your Google account) |
 
 ## Pre-Configured MCP Servers
 
@@ -49,14 +48,14 @@ All AI tools share these MCP servers (via [Ruler](https://github.com/intellectro
 ## How It Works
 
 1. `setup.sh` installs `~/.customize_environment` (runs on Cloud Shell boot)
-2. Installs Claude Code, Codex, Gemini CLI, and Ruler
+2. Installs Claude Code, Codex, and Ruler
 3. Fetches API keys from Secret Manager (if you have access)
-4. Configures MCP servers for all AI tools via Ruler
+4. Configures Claude/Codex to use API keys without login prompts
+5. Configures MCP servers for all AI tools via Ruler
 
 ### Access Requirements
 
 To get API keys automatically, you must be a member of `data-product@tameson.com`.
-If you're not in the group, you can still use Gemini (uses your Google account).
 
 ## Admin Setup
 
@@ -68,12 +67,13 @@ Admins can manage API keys using:
 This creates/updates secrets in Secret Manager (`bi-project-392012`):
 - `ai-tools-anthropic-key`
 - `ai-tools-openai-key`
+- `ai-tools-product-search-token`
 
 ## Updating
 
 Pull the latest and re-run setup:
 ```bash
-cd gcloud-shell-team
+cd ~/cloudshell_open/gcloud-shell-ai-tools
 git pull
 ./setup.sh
 ```
@@ -85,7 +85,7 @@ git pull
 ├── setup.sh                 # User setup script
 ├── admin-setup.sh           # Admin script for managing secrets
 ├── customize_environment    # Cloud Shell boot script
-├── cloudshell_open          # Instructions shown on Cloud Shell open
+├── QUICKSTART.txt           # Instructions printed on Cloud Shell open
 ├── README.md
 └── .ruler/
     ├── AGENTS.md            # Agent instructions
@@ -109,11 +109,11 @@ gcloud secrets versions access latest --secret="ai-tools-anthropic-key" --projec
 
 ### MCP servers not working
 ```bash
-cd ~/gcloud-shell-team
+cd ~/cloudshell_open/gcloud-shell-ai-tools
 ruler apply --verbose
 ```
 
 ### Check installed tools
 ```bash
-which claude codex gemini
+which claude codex
 ```
