@@ -8,7 +8,7 @@ Pre-configured AI coding assistants (Claude Code, Codex, Gemini CLI) with shared
 
 Click the button below to open Cloud Shell and clone this repo:
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_workspace=gcloud-shell-ai-tools&cloudshell_print=cloudshell_open)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_print=cloudshell_open)
 
 Then run:
 ```bash
