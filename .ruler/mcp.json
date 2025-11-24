@@ -16,7 +16,7 @@
         "transport": "streamable_http",
         "url": "https://product-search-mcp-tameson.replit.app/mcp/",
         "headers": {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJwcm9kdWN0LXNlYXJjaC1tY3AiLCJhdWQiOiJwcm9kdWN0LXNlYXJjaC1tY3AiLCJleHAiOjE3OTE0NTI3OTN9.1-p_q2F5sm5GxKd3oYONWih_MOiNdK60XLunxv0yB78"
+          "Authorization": "Bearer ${PRODUCT_SEARCH_TOKEN}"
         }
       }
     }

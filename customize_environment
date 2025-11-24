@@ -32,16 +32,29 @@ npm install -g @google/gemini-cli 2>/dev/null || true
 echo "Installing Ruler..."
 npm install -g @intellectronica/ruler 2>/dev/null || true
 
-echo "Running Ruler apply to generate MCP configs"
-ruler apply --no-gitignore 2>/dev/null || true
-
-# Fetch API keys from Secret Manager
-echo "Fetching API keys from Secret Manager..."
+# Fetch secrets from Secret Manager
+echo "Fetching secrets from Secret Manager..."
 PROJECT_ID="bi-project-392012"
 
 ANTHROPIC_KEY=$(gcloud secrets versions access latest --secret="ai-tools-anthropic-key" --project="$PROJECT_ID" 2>/dev/null) || true
 OPENAI_KEY=$(gcloud secrets versions access latest --secret="ai-tools-openai-key" --project="$PROJECT_ID" 2>/dev/null) || true
+PRODUCT_SEARCH_TOKEN=$(gcloud secrets versions access latest --secret="ai-tools-product-search-token" --project="$PROJECT_ID" 2>/dev/null) || true
 
+# Run Ruler to generate MCP configs
+echo "Running Ruler apply to generate MCP configs..."
+ruler apply --no-gitignore 2>/dev/null || true
+
+# Replace product_search token placeholder in generated MCP configs
+if [ -n "$PRODUCT_SEARCH_TOKEN" ]; then
+    echo "Configuring product_search MCP token..."
+    for f in .mcp.json .codex/config.toml .gemini/settings.json; do
+        if [ -f "$f" ]; then
+            sed -i "s|\${PRODUCT_SEARCH_TOKEN}|$PRODUCT_SEARCH_TOKEN|g" "$f"
+        fi
+    done
+fi
+
+# Save API keys
 if [ -n "$ANTHROPIC_KEY" ] || [ -n "$OPENAI_KEY" ]; then
     echo "Saving API keys to ~/.ai-keys..."
     cat > "$HOME/.ai-keys" << EOF

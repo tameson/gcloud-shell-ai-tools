@@ -12,29 +12,19 @@ echo "  AI Tools - Admin Secret Setup"
 echo "========================================"
 echo ""
 
-# Check if secrets exist
-echo "Checking secrets..."
-ANTHROPIC_EXISTS=$(gcloud secrets describe ai-tools-anthropic-key --project="$PROJECT_ID" 2>/dev/null && echo "yes" || echo "no")
-OPENAI_EXISTS=$(gcloud secrets describe ai-tools-openai-key --project="$PROJECT_ID" 2>/dev/null && echo "yes" || echo "no")
+# Check if secrets exist and create if needed
+SECRETS="ai-tools-anthropic-key ai-tools-openai-key ai-tools-product-search-token"
 
-# Create secrets if they don't exist
-if [ "$ANTHROPIC_EXISTS" = "no" ]; then
-    echo "Creating ai-tools-anthropic-key secret..."
-    gcloud secrets create ai-tools-anthropic-key --project="$PROJECT_ID"
-    gcloud secrets add-iam-policy-binding ai-tools-anthropic-key \
-        --project="$PROJECT_ID" \
-        --member="group:$GROUP_EMAIL" \
-        --role="roles/secretmanager.secretAccessor" --quiet
-fi
-
-if [ "$OPENAI_EXISTS" = "no" ]; then
-    echo "Creating ai-tools-openai-key secret..."
-    gcloud secrets create ai-tools-openai-key --project="$PROJECT_ID"
-    gcloud secrets add-iam-policy-binding ai-tools-openai-key \
-        --project="$PROJECT_ID" \
-        --member="group:$GROUP_EMAIL" \
-        --role="roles/secretmanager.secretAccessor" --quiet
-fi
+for SECRET in $SECRETS; do
+    if ! gcloud secrets describe "$SECRET" --project="$PROJECT_ID" &>/dev/null; then
+        echo "Creating $SECRET..."
+        gcloud secrets create "$SECRET" --project="$PROJECT_ID"
+        gcloud secrets add-iam-policy-binding "$SECRET" \
+            --project="$PROJECT_ID" \
+            --member="group:$GROUP_EMAIL" \
+            --role="roles/secretmanager.secretAccessor" --quiet
+    fi
+done
 
 echo ""
 echo "Enter API keys (or press Enter to skip):"
@@ -50,6 +40,12 @@ read -p "OpenAI API Key (sk-...): " OPENAI_KEY
 if [ -n "$OPENAI_KEY" ]; then
     echo -n "$OPENAI_KEY" | gcloud secrets versions add ai-tools-openai-key --project="$PROJECT_ID" --data-file=-
     echo "✓ OpenAI key updated"
+fi
+
+read -p "Product Search Token (JWT): " PRODUCT_SEARCH_TOKEN
+if [ -n "$PRODUCT_SEARCH_TOKEN" ]; then
+    echo -n "$PRODUCT_SEARCH_TOKEN" | gcloud secrets versions add ai-tools-product-search-token --project="$PROJECT_ID" --data-file=-
+    echo "✓ Product Search token updated"
 fi
 
 echo ""
