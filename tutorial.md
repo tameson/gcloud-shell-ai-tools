@@ -1,27 +1,41 @@
-# Cloud Shell AI Team Setup
+# Cloud Shell AI Tools Setup
 
-## Step 1: Run Setup
+<walkthrough-tutorial-duration duration="2"></walkthrough-tutorial-duration>
 
-Run the setup script:
+## Welcome!
+
+This tutorial will set up Claude Code, Codex, and Gemini CLI.
+
+**Click "Start" below to begin.**
+
+## Run Setup Script
+
+<walkthrough-spotlight-pointer spotlightId="devshell-terminal-button">Open a terminal</walkthrough-spotlight-pointer> if one isn't already open.
+
+Then copy and run this command:
 
 ```bash
-./setup.sh
+cd ~/cloudshell_open/gcloud-shell-ai-tools && ./setup.sh
 ```
 
-This installs Claude Code, Codex, Gemini CLI, and configures MCP servers.
+Wait for the installation to complete (about 1-2 minutes).
 
-## Step 2: Reload Shell
+## Reload Your Shell
+
+After setup completes, run:
 
 ```bash
 source ~/.bashrc
 ```
 
-## Step 3: Start Using AI Tools
+## You're Done!
 
-```bash
-claude    # Anthropic Claude Code
-codex     # OpenAI Codex
-gemini    # Google Gemini CLI
-```
+You can now use these commands:
 
-**Done!** API keys are automatically loaded from Secret Manager.
+- `claude` - Anthropic Claude Code
+- `codex` - OpenAI Codex
+- `gemini` - Google Gemini CLI
+
+<walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
+
+API keys are automatically loaded from Secret Manager.
