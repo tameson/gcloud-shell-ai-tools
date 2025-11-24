@@ -35,4 +35,28 @@ npm install -g @intellectronica/ruler 2>/dev/null || true
 echo "Running Ruler apply to generate MCP configs"
 ruler apply --no-gitignore 2>/dev/null || true
 
+# Fetch API keys from Secret Manager
+echo "Fetching API keys from Secret Manager..."
+PROJECT_ID="bi-project-392012"
+
+ANTHROPIC_KEY=$(gcloud secrets versions access latest --secret="ai-tools-anthropic-key" --project="$PROJECT_ID" 2>/dev/null) || true
+OPENAI_KEY=$(gcloud secrets versions access latest --secret="ai-tools-openai-key" --project="$PROJECT_ID" 2>/dev/null) || true
+
+if [ -n "$ANTHROPIC_KEY" ] || [ -n "$OPENAI_KEY" ]; then
+    echo "Saving API keys to ~/.ai-keys..."
+    cat > "$HOME/.ai-keys" << EOF
+export ANTHROPIC_API_KEY="$ANTHROPIC_KEY"
+export OPENAI_API_KEY="$OPENAI_KEY"
+EOF
+    chmod 600 "$HOME/.ai-keys"
+
+    # Add to bashrc if not already there
+    if ! grep -q "source.*\.ai-keys" "$HOME/.bashrc" 2>/dev/null; then
+        echo '[ -f "$HOME/.ai-keys" ] && source "$HOME/.ai-keys"' >> "$HOME/.bashrc"
+    fi
+    echo "API keys configured successfully"
+else
+    echo "Note: Could not fetch API keys (you may not have access to Secret Manager)"
+fi
+
 echo "=== AI Tools Installation Complete ==="

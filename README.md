@@ -4,35 +4,27 @@ Pre-configured AI coding assistants (Claude Code, Codex, Gemini CLI) with shared
 
 ## Quick Start
 
-### Option 1: One-Click Setup (Recommended)
+### One-Click Setup
 
-Click the button below to open Cloud Shell and automatically clone this repo:
+Click the button below to open Cloud Shell and clone this repo:
 
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://gitlab.com/tameson/ai-tools/gcloud-shell-team.git&cloudshell_git_branch=customize-environment&cloudshell_workspace=gcloud-shell-team&cloudshell_print=cloudshell_open)
 
 Then run:
 ```bash
 ./setup.sh
+source ~/.bashrc
 ```
 
-### Option 2: Manual Setup
+That's it! API keys are automatically fetched from Secret Manager.
+
+### Manual Setup
 
 ```bash
-# Clone the repo
 git clone -b customize-environment https://gitlab.com/tameson/ai-tools/gcloud-shell-team.git
 cd gcloud-shell-team
-
-# Run setup (installs tools, configures MCP)
 ./setup.sh
-```
-
-### Option 3: With API Keys Pre-configured
-
-```bash
-cd gcloud-shell-team
-export ANTHROPIC_API_KEY="sk-ant-..."
-export OPENAI_API_KEY="sk-..."
-./setup.sh
+source ~/.bashrc
 ```
 
 ## Available Commands
@@ -54,38 +46,28 @@ All AI tools share these MCP servers (via [Ruler](https://github.com/intellectro
 | **chrome-devtools** | Browser automation |
 | **product_search** | Product search API |
 
-## Setting API Keys
-
-### Claude Code (Anthropic)
-```bash
-export ANTHROPIC_API_KEY="sk-ant-..."
-```
-Get your key: https://console.anthropic.com/settings/keys
-
-### Codex (OpenAI)
-```bash
-export OPENAI_API_KEY="sk-..."
-```
-Get your key: https://platform.openai.com/api-keys
-
-### Gemini CLI
-Uses your Google account automatically (no key needed in Cloud Shell).
-
-### Save Keys Permanently
-```bash
-cat >> ~/.ai-keys << 'EOF'
-export ANTHROPIC_API_KEY="sk-ant-..."
-export OPENAI_API_KEY="sk-..."
-EOF
-chmod 600 ~/.ai-keys
-```
-
 ## How It Works
 
-1. `setup.sh` installs the `~/.customize_environment` script
-2. Cloud Shell runs this script on every boot
-3. Tools are installed to `$HOME` (persists across sessions)
-4. MCP configuration is managed by Ruler in `.ruler/` (run from repo directory)
+1. `setup.sh` installs `~/.customize_environment` (runs on Cloud Shell boot)
+2. Installs Claude Code, Codex, Gemini CLI, and Ruler
+3. Fetches API keys from Secret Manager (if you have access)
+4. Configures MCP servers for all AI tools via Ruler
+
+### Access Requirements
+
+To get API keys automatically, you must be a member of `data-product@tameson.com`.
+If you're not in the group, you can still use Gemini (uses your Google account).
+
+## Admin Setup
+
+Admins can manage API keys using:
+```bash
+./admin-setup.sh
+```
+
+This creates/updates secrets in Secret Manager (`bi-project-392012`):
+- `ai-tools-anthropic-key`
+- `ai-tools-openai-key`
 
 ## Updating
 
@@ -100,8 +82,10 @@ git pull
 
 ```
 .
-├── setup.sh                 # One-time setup script
+├── setup.sh                 # User setup script
+├── admin-setup.sh           # Admin script for managing secrets
 ├── customize_environment    # Cloud Shell boot script
+├── cloudshell_open          # Instructions shown on Cloud Shell open
 ├── README.md
 └── .ruler/
     ├── AGENTS.md            # Agent instructions
@@ -113,8 +97,14 @@ git pull
 
 ### Tools not found after restart
 ```bash
-# Re-run the boot script manually
 bash ~/.customize_environment
+source ~/.bashrc
+```
+
+### API keys not working
+```bash
+# Check if you have access to Secret Manager
+gcloud secrets versions access latest --secret="ai-tools-anthropic-key" --project="bi-project-392012"
 ```
 
 ### MCP servers not working
