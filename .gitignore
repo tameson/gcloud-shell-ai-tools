@@ -6,6 +6,8 @@ CLAUDE.md
 .aider.conf.yml
 .clinerules
 .gemini/
+.claude/
+.codex/
 
 # Backup files
 *.bak

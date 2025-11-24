@@ -1,0 +1,38 @@
+#!/bin/bash
+# Cloud Shell Environment Customization Script
+# This runs automatically on Cloud Shell boot (as root)
+# Tools installed here persist in $HOME across sessions
+#
+# To install: cp customize_environment ~/.customize_environment
+
+set -e
+
+echo "=== Installing AI Coding Tools ==="
+
+# Install uv (for uvx/bigquery-mcp)
+if ! command -v uv &> /dev/null; then
+    echo "Installing uv..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Install Node.js tools globally to $HOME
+export NVM_DIR="/usr/local/nvm"
+source "$NVM_DIR/nvm.sh"
+
+echo "Installing Claude Code..."
+npm install -g @anthropic-ai/claude-code 2>/dev/null || true
+
+echo "Installing Codex..."
+npm install -g @openai/codex 2>/dev/null || true
+
+echo "Installing Gemini CLI..."
+npm install -g @google/gemini-cli 2>/dev/null || true
+
+echo "Installing Ruler..."
+npm install -g @intellectronica/ruler 2>/dev/null || true
+
+echo "Running Ruler apply to generate MCP configs"
+ruler apply --no-gitignore 2>/dev/null || true
+
+echo "=== AI Tools Installation Complete ==="
