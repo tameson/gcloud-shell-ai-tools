@@ -1,33 +1,58 @@
 #!/bin/bash
-# One-time setup script for Cloud Shell AI Team Environment
-# Run this after cloning the repo: ./setup.sh
-
 set -e
 
-echo "========================================"
-echo "  Cloud Shell AI Team - Setup"
-echo "========================================"
+echo "=================================="
+echo "  Claude Code Setup"
+echo "=================================="
 echo ""
 
-# Install the boot script
-echo "Installing boot script (~/.customize_environment)..."
-cp customize_environment ~/.customize_environment
-chmod +x ~/.customize_environment
-
-# Run the boot script now to install everything
+# Check gcloud auth
+echo "[1/4] Checking Google Cloud authentication..."
+if gcloud auth list --filter=status:ACTIVE --format="value(account)" | head -1 | grep -q "@"; then
+    ACCOUNT=$(gcloud auth list --filter=status:ACTIVE --format="value(account)" | head -1)
+    echo "      Authenticated as: $ACCOUNT"
+else
+    echo "      Not authenticated. Please run: gcloud auth login"
+    exit 1
+fi
 echo ""
-echo "Running installation (this may take a minute)..."
-bash ~/.customize_environment
 
+# Install uv (Python package manager)
+echo "[2/4] Installing dependencies..."
+if ! command -v uv &> /dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+echo "      uv installed"
 echo ""
-echo "========================================"
+
+# Install Claude Code
+echo "[3/4] Installing Claude Code..."
+if ! command -v claude &> /dev/null; then
+    # Ensure npm is available
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    npm install -g @anthropic-ai/claude-code
+fi
+echo "      Claude Code installed"
+echo ""
+
+# Setup MCP config in home directory
+echo "[4/4] Configuring MCP servers..."
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+mkdir -p "$HOME/.claude"
+cp "$SCRIPT_DIR/.mcp.json" "$HOME/.claude/.mcp.json"
+
+# Copy project settings with pre-approved permissions
+if [ -d "$SCRIPT_DIR/.claude" ]; then
+    cp -r "$SCRIPT_DIR/.claude/"* "$HOME/.claude/" 2>/dev/null || true
+fi
+echo "      MCP servers configured"
+echo ""
+
+echo "=================================="
 echo "  Setup Complete!"
-echo "========================================"
+echo "=================================="
 echo ""
-echo "Available commands:"
-echo "  claude  - Anthropic Claude Code"
-echo "  codex   - OpenAI Codex"
-echo "  gemini  - Google Gemini CLI"
-echo ""
-echo "Start a new terminal or run: source ~/.bashrc"
+echo "Run 'claude' to start Claude Code"
 echo ""

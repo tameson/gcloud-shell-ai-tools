@@ -1,41 +1,64 @@
-# Cloud Shell AI Tools Setup
+# Claude Code Setup
 
-<walkthrough-tutorial-duration duration="2"></walkthrough-tutorial-duration>
+<walkthrough-tutorial-duration duration="3"></walkthrough-tutorial-duration>
 
-## Welcome!
+## Welcome
 
-This tutorial will set up Claude Code, Codex, and Gemini CLI.
+This tutorial will set up **Claude Code** with pre-configured tools for our team.
 
-**Click "Start" below to begin.**
+Click **Start** to begin.
 
-## Run Setup Script
+## Step 1: Run Setup
 
-<walkthrough-spotlight-pointer spotlightId="devshell-terminal-button">Open a terminal</walkthrough-spotlight-pointer> if one isn't already open.
-
-Then copy and run this command:
+Run the setup script in the terminal below:
 
 ```bash
-cd ~/cloudshell_open/gcloud-shell-ai-tools && ./setup.sh
+./setup.sh
 ```
 
-Wait for the installation to complete (about 1-2 minutes).
+This will:
+- Install Claude Code
+- Configure MCP servers (BigQuery, Context7, Markitdown)
+- Set up permissions for filesystem and tools
 
-## Reload Your Shell
+Wait for it to complete (about 1 minute).
 
-After setup completes, run:
+<walkthrough-footnote>If you see permission errors, make sure you're logged into the correct Google account.</walkthrough-footnote>
+
+## Step 2: Verify Google Cloud Auth
+
+Make sure you're authenticated with Google Cloud:
 
 ```bash
-source ~/.bashrc
+gcloud auth list
 ```
 
-## You're Done!
+You should see your account with an asterisk (*) next to it.
 
-You can now use these commands:
+If not authenticated, run:
+```bash
+gcloud auth login
+```
 
-- `claude` - Anthropic Claude Code
-- `codex` - OpenAI Codex
-- `gemini` - Google Gemini CLI
+## Step 3: Start Claude Code
+
+Now start Claude Code:
+
+```bash
+claude
+```
+
+That's it! Claude Code is now ready with:
+- **BigQuery** access for data analysis
+- **Context7** for library documentation
+- **Markitdown** for document conversion
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
-API keys are automatically loaded from Secret Manager.
+## Tips
+
+- Type `/help` in Claude Code to see available commands
+- Use `claude --help` for CLI options
+- MCP servers are pre-configured and ready to use
+
+**Happy coding!**

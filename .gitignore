@@ -1,14 +1,3 @@
-# Generated agent config files (created by ruler apply)
-CLAUDE.md
-.mcp.json
-.cursor/
-.vscode/mcp.json
-.aider.conf.yml
-.clinerules
-.gemini/
-.claude/
-.codex/
-
 # Backup files
 *.bak
 
@@ -25,17 +14,3 @@ Thumbs.db
 .env
 .env.local
 *.log
-
-
-# START Ruler Generated Files
-.codex/config.toml
-.codex/config.toml.bak
-.gemini/settings.json
-.gemini/settings.json.bak
-.mcp.json.bak
-AGENTS.md
-AGENTS.md.bak
-CLAUDE.md.bak
-GEMINI.md
-GEMINI.md.bak
-# END Ruler Generated Files
