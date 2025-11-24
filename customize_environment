@@ -27,9 +27,6 @@ npm install -g @anthropic-ai/claude-code || echo "Warning: Failed to install Cla
 echo "Installing Codex..."
 npm install -g @openai/codex || echo "Warning: Failed to install Codex"
 
-echo "Installing Gemini CLI..."
-npm install -g @google/gemini-cli || echo "Warning: Failed to install Gemini CLI"
-
 echo "Installing Ruler..."
 npm install -g @intellectronica/ruler || echo "Warning: Failed to install Ruler"
 
