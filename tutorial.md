@@ -15,7 +15,7 @@ Click **Start** to begin.
 
 ## Step 1: Run Setup Script
 
-You need to open a terminal first by pressing ```ctrl+shift+c```
+You need to open a terminal first by going to 'terminal' in the menu bar and selecting 'new terminal'
 
 Next copy the below command and paste it into the terminal and press enter. This will install Claude Code, configure BigQuery MCP server, and set up permissions (takes ~1 minute):
 
@@ -29,21 +29,23 @@ Wait for the setup to complete successfully before proceeding.
 
 ## Step 2: Start Claude Code
 
-Launch Claude Code:
+Next copy the below command and paste it into the terminal and press enter. This will launch Claude Code:
 
 ```bash
 claude
 ```
 
 **First-time setup:**
-1. Choose `Anthropic Console account · API usage billing`
-2. Login via Google account at the provided link
-3. Copy the authentication code back to terminal
-4. Accept all default options
+1. It will ask a few questions for preferences, accept all default options for text, permissions by pressing enter.
+2. Select the option ```Anthropic Console account · API usage billing``` and login via your google account to Anthropic Console on the link provided, copy the code you receive.
+3. Login via Google account at the provided link
+4. Copy the authentication code back to terminal and press enter.
+
+You should now see the Claude Code prompt and you can start asking questions in the next step.
 
 ## Step 3: Verify Setup
 
-Test Claude Code with this query:
+Test Claude Code with a sample question about our data, for example:
 
 ```
 which product level 2 categories often have products that sustain a high pressure over 20 bar?
