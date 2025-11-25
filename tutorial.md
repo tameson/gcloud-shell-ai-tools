@@ -15,7 +15,9 @@ Click **Start** to begin.
 
 ## Step 1: Run Setup Script
 
-This will install Claude Code, configure BigQuery MCP server, and set up permissions (takes ~1 minute):
+You need to open a terminal first by pressing ```ctrl+shift+c```
+
+Next copy the below command and paste it into the terminal and press enter. This will install Claude Code, configure BigQuery MCP server, and set up permissions (takes ~1 minute):
 
 ```bash
 ./setup.sh
