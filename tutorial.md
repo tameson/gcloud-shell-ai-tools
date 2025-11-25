@@ -61,4 +61,7 @@ Claude will query BigQuery, analyze the data, and save a report with findings to
 - `Ctrl+C` - Stop current command/return to terminal
 - Use markdown preview to view reports in readable format
 
+Don't forget to bookmark the link to reopen your workspace:  
+`https://shell.cloud.google.com/cloudshell/editor?show=ide&cloudshell_workspace=./cloudshell_open/gcloud-shell-ai-tools`
+
 **Happy researching!**

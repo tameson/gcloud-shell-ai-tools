@@ -6,11 +6,17 @@ Claude Code pre-configured to query the Tameson datalake.
 
 [![Open existing Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?show=ide&cloudshell_workspace=./cloudshell_open/gcloud-shell-ai-tools)
 
+
+
 ## Quick Start
 
-1. Click the button above
-2. Follow the tutorial in Cloud Shell
-3. Run `claude` to start
+
+1. Important things to check during setup
+    - Make sure you have accepted the account invite for Anthropic Console
+    - Allow popups in browser, so you are able to login via google account and to Anthropic Console
+2. Click the button above for setup or open existing Cloud Shell
+3. Follow the tutorial in Cloud Shell
+4. Run `claude` to start
 
 ## What's Included
 
