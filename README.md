@@ -2,8 +2,10 @@
 
 Claude Code pre-configured to query the Tameson datalake.
 
+First time setup only:
 [![Setup in Cloud Shell](https://img.shields.io/badge/Setup%20in%20Cloud%20Shell-blue?logo=googlecloud)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_tutorial=tutorial.md&show=ide&cloudshell_workspace=.)
 
+Link to open existing Cloud Shell:
 [![Open existing Cloud Shell](https://img.shields.io/badge/Open%20existing%20Cloud%20Shell-green?logo=googlecloud)](https://shell.cloud.google.com/cloudshell/editor?show=ide&cloudshell_workspace=./cloudshell_open/gcloud-shell-ai-tools)
 
 
