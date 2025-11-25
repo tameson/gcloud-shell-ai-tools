@@ -1,8 +1,10 @@
-# Tameson Data Assistant
+# Tameson Data Assistant - Cloud Shell setup
 
 Claude Code pre-configured to query the Tameson datalake.
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_tutorial=tutorial.md&show=ide&cloudshell_workspace=.)
+[![Setup in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/tameson/gcloud-shell-ai-tools.git&cloudshell_tutorial=tutorial.md&show=ide&cloudshell_workspace=.)
+
+[![Open existing Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?show=ide&cloudshell_workspace=./cloudshell_open/gcloud-shell-ai-tools)
 
 ## Quick Start
 
@@ -13,9 +15,7 @@ Claude Code pre-configured to query the Tameson datalake.
 ## What's Included
 
 - **BigQuery** - Query the Tameson datalake (prefer `3_Marts` and `4_Reports`)
-- **Product Search** - Search the Tameson product catalog
-- **Context7** - Library documentation lookup
-- **Markitdown** - Convert documents to markdown
+
 
 Research findings are saved to `/outputs` with full documentation of queries and reasoning.
 
